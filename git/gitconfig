@@ -1,0 +1,6 @@
+[user]
+	email = kontakt@olgierd.me
+	name = Olgierd Grzyb
+
+[core]
+	excludesfile = ~/.gitignore

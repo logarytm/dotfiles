@@ -1,0 +1,13 @@
+zsh/.zgen/*
+tags
+.netrw*
+*~
+install.log*
+__pycache__
+*.pyc
+
+history
+bookmarks
+tagged
+
+zsh/plugins

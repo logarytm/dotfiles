@@ -1,0 +1,12 @@
+zsh:$XDG_CONFIG_HOME/zsh
+zsh/zshrc:$HOME/.zshrc
+tex:$HOME/texmf
+shell/dircolors:$HOME/.dircolors
+git/gitignore:$HOME/.gitignore
+git/gitconfig:$HOME/.gitconfig
+ranger:$XDG_CONFIG_HOME/ranger
+zathura:$XDG_CONFIG_HOME/zathura
+x11/Xresources:$HOME/.Xresources
+x11/xprofile:$HOME/.xprofile
+x11/XCompose:$HOME/.XCompose
+nvim:$XDG_CONFIG_HOME/nvim

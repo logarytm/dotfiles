@@ -1,0 +1,144 @@
+<Multi_key> <A> <l> : "Α"
+<Multi_key> <a> <l> : "α"
+
+<Multi_key> <B> <e> : "Β"
+<Multi_key> <b> <e> : "β"
+
+<Multi_key> <G> <a> : "Γ"
+<Multi_key> <g> <a> : "γ"
+
+<Multi_key> <D> <e> : "Δ"
+<Multi_key> <d> <e> : "δ"
+
+<Multi_key> <E> <p> : "Ε"
+<Multi_key> <e> <p> : "ε"
+
+<Multi_key> <Z> <e> : "Ζ"
+<Multi_key> <z> <e> : "ζ"
+
+<Multi_key> <E> <t> : "Η"
+<Multi_key> <e> <t> : "η"
+
+<Multi_key> <T> <h> : "Θ"
+<Multi_key> <t> <h> : "θ"
+
+<Multi_key> <I> <o> : "Ι"
+<Multi_key> <i> <o> : "ι"
+
+<Multi_key> <K> <a> : "Κ"
+<Multi_key> <K> <a> : "κ"
+
+<Multi_key> <L> <a> : "Λ"
+<Multi_key> <l> <a> : "λ"
+
+<Multi_key> <M> <u> : "Μ"
+<Multi_key> <m> <u> : "μ"
+
+<Multi_key> <N> <u> : "Ν"
+<Multi_key> <n> <u> : "ν"
+
+<Multi_key> <X> <i> : "Ξ"
+<Multi_key> <x> <i> : "ξ"
+
+<Multi_key> <O> <o> : "Ο"
+<Multi_key> <O> <o> : "ο"
+
+<Multi_key> <P> <i> : "Π"
+<Multi_key> <p> <i> : "π"
+
+<Multi_key> <R> <h> : "Ρ"
+<Multi_key> <r> <h> : "ρ"
+
+<Multi_key> <S> <i> : "Σ"
+<Multi_key> <s> <i> : "σ"
+
+<Multi_key> <T> <a> : "Τ"
+<Multi_key> <t> <a> : "τ"
+
+<Multi_key> <U> <p> : "Υ"
+<Multi_key> <u> <p> : "υ"
+
+<Multi_key> <P> <h> : "Φ"
+<Multi_key> <p> <h> : "φ"
+
+<Multi_key> <C> <h> : "Χ"
+<Multi_key> <c> <h> : "χ"
+
+<Multi_key> <P> <s> : "Ψ"
+<Multi_key> <p> <s> : "ψ"
+
+<Multi_key> <O> <m> : "Ω"
+<Multi_key> <o> <m> : "ω"
+
+<Multi_key> <c> <h> : "✔"
+
+<Multi_key> <a> <e> <s> : "ａｅｓｔｈｅｔｉｃｓ"
+
+<Multi_key> <i> <n> <t> : "∫"
+<Multi_key> <s> <q> <r> <t> : "√"
+<Multi_key> <i> <n> : "∈"
+<Multi_key> <C> <C> : "ℂ"
+<Multi_key> <R> <R> : "ℝ"
+<Multi_key> <N> <N> : "ℕ"
+<Multi_key> <Q> <Q> : "ℚ"
+<Multi_key> <N> <0> : "№"
+
+<Multi_key> <h> <u> <g> : "＼(^o^)／"
+<Multi_key> <s> <h> <r> <u> <g> : "¯\\_(ツ)_/¯"
+<Multi_key> <l> <e> <n> <n> <y> : "( ͡° ͜ʖ ͡°)"
+<Multi_key> <t> <f> : "(ノಠ益ಠ)ノ彡┻━┻"
+
+<Multi_key> <k> <s> <z> <y> <s> <z> : "zsʎzsʞ"
+
+<Multi_key> <Multi_key> <a> : "ａ"
+<Multi_key> <Multi_key> <b> : "ｂ"
+<Multi_key> <Multi_key> <c> : "ｃ"
+<Multi_key> <Multi_key> <d> : "ｄ"
+<Multi_key> <Multi_key> <e> : "ｅ"
+<Multi_key> <Multi_key> <f> : "ｆ"
+<Multi_key> <Multi_key> <g> : "ｇ"
+<Multi_key> <Multi_key> <h> : "ｈ"
+<Multi_key> <Multi_key> <i> : "ｉ"
+<Multi_key> <Multi_key> <j> : "ｊ"
+<Multi_key> <Multi_key> <k> : "ｋ"
+<Multi_key> <Multi_key> <l> : "ｌ"
+<Multi_key> <Multi_key> <m> : "ｍ"
+<Multi_key> <Multi_key> <n> : "ｎ"
+<Multi_key> <Multi_key> <o> : "ｏ"
+<Multi_key> <Multi_key> <p> : "ｐ"
+<Multi_key> <Multi_key> <q> : "ｑ"
+<Multi_key> <Multi_key> <r> : "ｒ"
+<Multi_key> <Multi_key> <s> : "ｓ"
+<Multi_key> <Multi_key> <t> : "ｔ"
+<Multi_key> <Multi_key> <u> : "ｕ"
+<Multi_key> <Multi_key> <v> : "ｖ"
+<Multi_key> <Multi_key> <w> : "ｗ"
+<Multi_key> <Multi_key> <x> : "ｘ"
+<Multi_key> <Multi_key> <y> : "ｙ"
+<Multi_key> <Multi_key> <z> : "ｚ"
+<Multi_key> <Multi_key> <A> : "Ａ"
+<Multi_key> <Multi_key> <B> : "Ｂ"
+<Multi_key> <Multi_key> <C> : "Ｃ"
+<Multi_key> <Multi_key> <D> : "Ｄ"
+<Multi_key> <Multi_key> <E> : "Ｅ"
+<Multi_key> <Multi_key> <F> : "Ｆ"
+<Multi_key> <Multi_key> <G> : "Ｇ"
+<Multi_key> <Multi_key> <H> : "Ｈ"
+<Multi_key> <Multi_key> <I> : "Ｉ"
+<Multi_key> <Multi_key> <J> : "Ｊ"
+<Multi_key> <Multi_key> <K> : "Ｋ"
+<Multi_key> <Multi_key> <L> : "Ｌ"
+<Multi_key> <Multi_key> <M> : "Ｍ"
+<Multi_key> <Multi_key> <N> : "Ｎ"
+<Multi_key> <Multi_key> <O> : "Ｏ"
+<Multi_key> <Multi_key> <P> : "Ｐ"
+<Multi_key> <Multi_key> <Q> : "Ｑ"
+<Multi_key> <Multi_key> <R> : "Ｒ"
+<Multi_key> <Multi_key> <S> : "Ｓ"
+<Multi_key> <Multi_key> <T> : "Ｔ"
+<Multi_key> <Multi_key> <U> : "Ｕ"
+<Multi_key> <Multi_key> <V> : "Ｖ"
+<Multi_key> <Multi_key> <W> : "Ｗ"
+<Multi_key> <Multi_key> <X> : "Ｘ"
+<Multi_key> <Multi_key> <Y> : "Ｙ"
+<Multi_key> <Multi_key> <Z> : "Ｚ"

@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__.'/Parser.php';
+$config = Toml\Parser::fromFile(__DIR__.'/values.toml');
+$input = file_get_contents('php://stdin');
+$output = $input;
+$opening = '«';
+$closing = '»';
+
+for ($offset = strpos($output, $opening); $offset !== false; $offset = strpos($output, $opening)) {
+    $endOffset = strpos($output, $closing, $offset);
+    $expression = substr($output, $offset + strlen($opening), $endOffset - $offset - strlen($opening));
+    $expression = trim($expression);
+    $output = substr_replace($output, find_in_config($expression, $config), $offset, $endOffset - $offset + 2);
+}
+
+echo $output;
+
+function find_in_config($selector, $config)
+{
+    $value = '';
+    $chunks = explode('.', $selector);
+    $value = $config;
+    foreach ($chunks as $chunk) {
+        if (!array_key_exists($chunk, $value)) {
+            fprintf(STDERR, "error: value %s not defined\n", $selector);
+            exit(1);
+        }
+        $value = $value[$chunk];
+    }
+
+    return $value;
+}

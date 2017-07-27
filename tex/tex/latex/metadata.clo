@@ -1,0 +1,19 @@
+\newif\if@twodates
+\@twodatesfalse
+
+\newcommand\@class{}
+\newcommand\@subclass{}
+\newcommand\@faculty{}
+\newcommand\@type{}
+\newcommand\@subject{}
+\newcommand\@realised{}
+
+\newcommand\kia{Katedra Informatyki i~Automatyki}
+
+\newcommand\class[1]{\renewcommand\@class{#1}}
+\newcommand\faculty[1]{\renewcommand\@faculty{#1}}
+\newcommand\subclass[1]{\renewcommand\@subclass{#1}}
+\newcommand\type[1]{\renewcommand\@type{#1}}
+\newcommand\subject[1]{\renewcommand\@subject{#1}}
+\newcommand\handed[1]{\renewcommand\@date{#1}}
+\newcommand\realised[1]{\renewcommand\@realised{#1}\@twodatestrue}

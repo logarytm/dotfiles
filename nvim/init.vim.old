@@ -1,0 +1,222 @@
+call plug#begin('~/.vim/plugged')
+let mapleader=","
+let maplocalleader=","
+
+" Plugins:  Pandoc {{{
+let g:markdown_fenced_languages = ['html', 'python', 'js=javascript', 'bash=sh']
+let g:pandoc#modules#disabled = ["chdir", "spell"]
+" }}}
+" Plugins:  Airline {{{
+let g:colorscheme = 'solarized'
+" }}}
+" Plugins:  Syntastic {{{
+" let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_error_symbol = '▶▶'
+let g:syntastic_style_error_symbol = '▶▶'
+let g:syntastic_warning_symbol = '▶▶'
+let g:syntastic_style_warning_symbol = '▶▶'
+" }}}
+" Plugins:  Other {{{
+let g:tex_conceal = "abdgm"
+let g:deoplete#enable_at_startup = 1
+set tags=./tags
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+let g:vimtex_quickfix_latexlog = {'fix_paths':0}
+" }}}
+" Plugins:  CtrlP {{{
+let g:ctrlp_extensions = ['tag', 'quickfix']
+let g:ctrlp_max_height=25
+let g:ctrlp_max_files=20480
+let g:ctrlp_max_depth=40
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/](.git|.svn|.hg|Debug|Release|.vs|.idea|nbproject|CMakeFiles|node_modules|vendor|bower_components|cache)$',
+    \ 'file': '\v(CMakeCache.txt|tags|\.(exe|so|dll|suo|aux|pdf|toc|bib|log|vcxproj|sln|o|filters|db|pdb|idb|user|tlog|lastbuildstate|cache|check_cache|a|bin|elf|iso))$',
+    \ }
+" }}}
+
+" Plugin List:  Editor {{{
+Plug 'junegunn/goyo.vim'
+Plug 'vim-scripts/Rename2'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/scratch.vim'
+" }}}
+" Plugin List:  Writing {{{
+Plug 'junegunn/vim-easy-align'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+" }}}
+" Plugin List:  Syntaxes {{{
+Plug 'KeitaNakamura/tex-conceal.vim'
+Plug 'chrisbra/csv.vim'
+Plug 'StanAngeloff/php.vim'
+Plug 'lervag/vimtex'
+Plug 'freitass/todo.txt-vim'
+" }}}
+" Plugin List:  Other {{{
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
+Plug 'xolox/vim-misc'
+" }}}
+
+call plug#end()
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
+" Options:  Case-Matching {{{
+set ignorecase
+set noinfercase
+set wildignorecase
+" }}}
+" Options:  Indentation {{{
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set smartindent
+set expandtab
+set cinoptions+=:0
+set cinoptions+=g0
+" }}}
+" Options:  General {{{
+set mouse=a
+syntax on
+set conceallevel=2
+set number
+set relativenumber
+set exrc
+set secure
+set shortmess+=I
+set nobackup
+set noswapfile
+set backspace=2
+" set guicursor=
+set hidden
+" }}}
+" Options:  Line Wrapping {{{
+set wrap
+set linebreak
+set colorcolumn=80
+" }}}
+" Options:  Look & Feel {{{
+set background=dark
+set nohlsearch
+exec 'set fillchars+=vert: '
+hi clear SignColumn
+hi MatchParen ctermbg=0 ctermfg=none
+" }}}
+
+autocmd BufWritePre * StripWhitespace
+
+command! Tob let &background = (&background == "dark"? "light" : "dark")
+command! Hline set cursorline!
+" Keys:  Buffers {{{
+map <silent> <leader>z :Goyo<cr>
+map <silent> <leader>d :bdelete<cr>
+map <silent> <leader>q :quit<cr>
+map <silent> <leader>w :write<cr>
+map <silent> <leader>f :CtrlP<cr>
+map <silent> <leader>b :CtrlPBuffer<cr>
+map <silent> <leader>t :CtrlPTag<cr>
+map <silent> <tab> :bn<cr>
+map <silent> <S-tab> :bp<cr>
+" }}}
+" Keys:  Juggling letter case {{{
+imap <C-u> <esc><C-u>a
+imap <C-l> <esc><C-l>a
+map <C-u> gUiwe
+map <C-l> guiwe
+" }}}
+" Keys:  Movements {{{
+noremap m %
+noremap Y y$
+noremap j gj
+noremap k gk
+noremap $ g$
+noremap 0 g0
+noremap ^ g^
+" }}}
+" Keys:  Emmet {{{
+imap <silent> <C-e> <C-y>,
+" }}}
+" Keys:  Other {{{
+map K i<cr><esc>
+map Q V}Jgqq
+" }}}
+
+" Functions:  Changing Indentation {{{
+command! -nargs=* Stab call Stab(<f-args>)
+function! Stab(width)
+  let l:tabstop = 1 * a:width
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+endfunction
+
+function! SummarizeTabs()
+  try
+    echohl ModeMsg
+    echon 'tabstop='.&l:ts
+    echon ' shiftwidth='.&l:sw
+    echon ' softtabstop='.&l:sts
+    if &l:et
+      echon ' expandtab'
+    else
+      echon ' noexpandtab'
+    endif
+  finally
+    echohl None
+  endtry
+endfunction
+" }}}
+
+filetype plugin indent on
+
+augr indentsizes
+  au FileType python,c,cpp,php Stab 2
+  au FileType html,css,javascript,json Stab 2
+  au BufEnter *.html Stab 2
+
+  au BufEnter composer.json Stab 4
+
+  au FileType tex,plaintex Stab 2
+  au FileType markdown Stab 4
+augr end
+
+augr rainbow
+  au FileType scheme call rainbow#load()
+augr end
+
+augr filetypes
+  au BufNewFile,BufEnter *.tex set filetype=tex
+  au BufNewFile,BufEnter *.asm set filetype=nasm
+  au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+  au BufNewFile,BufFilePre,BufRead *.bochsrc set filetype=conf
+augr end
+
+augr commentstrings
+  au FileType cpp setlocal commentstring=//\ %s
+  au FileType php setlocal commentstring=//\ %s
+  au FileType cmake setlocal commentstring=#\ %s
+augr end
+
+augr foldmethods
+  au FileType vim setlocal foldmethod=marker
+augr end
+
+augr texbindings
+  au FileType tex set wrap
+  au FileType tex set textwidth=80
+augr end

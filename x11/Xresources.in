@@ -1,0 +1,41 @@
+#define bg «colors.black»
+#define fg «colors.silver»
+
+*background: bg
+*foreground: fg
+*fadeColor: bg
+*cursorColor: fg
+*pointerColorBackground: bg
+*pointerColorForeground: fg
+
+URxvt.lineSpace: 1
+
+URxvt*font: «fonts.terminal»
+URxvt*boldFont:
+
+URxvt*internalBorder: 0
+URxvt*externalBorder: 0
+
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyKeypress: true
+URxvt.scrollBar: false
+
+URxvt.keysym.Control-Up: \033[1;5A
+URxvt.keysym.Control-Down: \033[1;5B
+URxvt.keysym.Control-Left: \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
+
+URxvt.buffered: true
+
+URxvt.fading: 20
+URxvt.fadeColor: «colors.black»
+
+URxvt.perl-ext-common: default,selection-to-clipboard,pasta,matcher,keyboard-select,bell-command
+URxvt.bell-command: notify-send "rxvt-unicode: bell!" --icon=utilities-terminal
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-launcher: /run/current-system/sw/bin/google-chrome-stable
+URxvt.underlineURLs: True
+URxvt.matcher.button: 1
+URxvt.keysym.M-Escape:perl:keyboard-select:activate
+URxvt.keysym.Control-Shift-V: perl:pasta:paste
+URxvt.clipboard.autocopy: true
