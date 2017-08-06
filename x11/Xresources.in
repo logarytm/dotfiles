@@ -8,7 +8,7 @@
 *pointerColorBackground: bg
 *pointerColorForeground: fg
 
-URxvt.lineSpace: 1
+URxvt.lineSpace: 0
 
 URxvt*font: «fonts.terminal»
 URxvt*boldFont:

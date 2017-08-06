@@ -16,9 +16,10 @@ let maplocalleader = ","
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'vim-scripts/Rename2'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth'
@@ -26,6 +27,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
@@ -39,7 +41,10 @@ Plug 'nelsyeung/twig.vim'
 Plug 'syngan/vim-vimlint'
 Plug 'ynkdir/vim-vimlparser'
 Plug 'cespare/vim-toml'
-" Plug 'Raimondi/delimitMate'
+
+let g:neomake_error_sign = { 'text': '▶▶' }
+let g:neomake_warning_sign = { 'text': '▶▶' }
+Plug 'neomake/neomake'
 
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
@@ -47,7 +52,6 @@ let g:syntastic_error_symbol = '▶▶'
 let g:syntastic_style_error_symbol = '▶▶'
 let g:syntastic_warning_symbol = '▶▶'
 let g:syntastic_style_warning_symbol = '▶▶'
-" Plug 'vim-syntastic/syntastic'
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -64,14 +68,15 @@ Plug 'xolox/vim-misc'
 let g:clang_library_path = "/run/current-system/sw/lib"
 Plug 'Rip-Rip/clang_complete'
 
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['omni']
+" let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+" let g:deoplete#ignore_sources.php = ['omni']
 Plug 'shawncplus/phpcomplete.vim'
 
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-let g:pandoc#modules#disabled = ["chdir"]
+let g:pandoc#keyboard#display_motions = 0
+let g:pandoc#modules#disabled = ['chdir']
 let g:pandoc#syntax#codeblocks#embeds#langs = ["js=javascript", "bash=sh"]
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -95,6 +100,7 @@ set hidden
 set number
 set relativenumber
 set ignorecase
+" set infercase
 set incsearch
 set nohlsearch
 set wildignorecase
@@ -107,9 +113,9 @@ set splitright
 set splitbelow
 
 set noexpandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set cinoptions+=:0
 set cinoptions+=g0
 set list
@@ -125,15 +131,16 @@ highlight IncSearch ctermbg=none ctermfg=none cterm=underline
 highlight StatusLine ctermbg=none ctermfg=7
 highlight clear WildMenu
 highlight WildMenu cterm=reverse
+highlight ExtraWhitespace ctermbg=19
 
-" nnoremap <silent> <tab> :bn<cr>
-" nnoremap <silent> <s-tab> :bp<cr>
-nnoremap <c-b> :CtrlPBuffer<cr>
+nnoremap <c-b> :Buffers<cr>
+nnoremap <c-c> :Commands<cr>
+nnoremap <c-p> :Files<cr>
 nnoremap <silent> <a-d> :Bdelete<cr>
 nnoremap <silent> <a-q> :wqa<cr>
 nnoremap <silent> <a-w> :update<cr>
 
-nnoremap <silent> <leader>z :Goyo<cr>
+nnoremap <silent> <leader>z :Goyo<cr>:Limelight<cr>
 nnoremap <silent> <leader>t :terminal<cr>
 
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
@@ -151,17 +158,15 @@ inoremap <silent> <c-c> <c-c>:silent! update<cr>
 
 inoremap jk <esc>
 
+noremap ; l
+noremap l gk
+noremap k gj
+noremap j h
+noremap h <nop>
+
 nnoremap Q vipgqq
 nnoremap K <nop>
 
-" easier yank and paste with system clipboard
-onoremap gy "+y
-vnoremap gy "+y
-nnoremap gp "+p
-vnoremap gp "+p
-
-noremap j gj
-noremap k gk
 noremap $ g$
 noremap 0 g^
 noremap ^ g^
@@ -230,6 +235,7 @@ command! -bang WA wa<bang>
 command! -bang Q q<bang>
 command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
+command! ReloadFile e!
 
 command! -nargs=1 Sp set spelllang=<args>
 

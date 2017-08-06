@@ -55,22 +55,23 @@ _install() {
 
 test -f install.log && mv install.log install.log~
 
-for line in $(cat deps); do
-	IFS=: read dest url <<< $line
-	mkdir -p $(dirname $dest)
-	if [ -d $dest ]; then
-		# (cd $dest && git pull)
-	else
-		git clone $url $dest
-	fi
-done
+if ! [ $nodeps ]; then
+	for line in $(cat deps); do
+		IFS=: read dest url <<< $line
+		mkdir -p $(dirname $dest)
+		if [ -d $dest ]; then
+			(cd $dest && git pull)
+		else
+			git clone $url $dest
+		fi
+	done
+fi
 
 for line in $(cat index); do
 	IFS=: read src dest <<< $line
 	dest="$(eval echo $dest)"
-	if ! [ -e $src ]; then
-		echo "error: source file $src does not exist" >&2
-		error=1
+	if ! [ -e $src ] || [[ $src == _build/* ]]; then
+		make $src
 	fi
 	_install $src $dest
 done

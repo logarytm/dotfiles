@@ -1,30 +1,22 @@
 \RequirePackage{parskip}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage{tgtermes}
-\RequirePackage[scaled=.9]{inconsolata}
+\RequirePackage{pslatex}
 \RequirePackage{fancyhdr}
 \RequirePackage{float}
 \RequirePackage{mathtools,amssymb,amsfonts}
 \RequirePackage{polski}
-\RequirePackage{listingsutf8}
 \RequirePackage[polish]{babel}
 \RequirePackage{xcolor}
-\pagestyle{fancy}
-\lstset{%
-	extendedchars=\true,
-	basicstyle=\ttfamily,
-	columns=fullflexible,
-	inputencoding=utf8,
-	breaklines=true,
-	breakatwhitespace=true,
-	tabsize=2,
-	rulecolor=\color{black!30},
-	frame=single,
-	backgroundcolor=\color{gray!10},
-	numbers=left,
-	numberstyle=\footnotesize
-}
+\RequirePackage{upquote}
+
+\RequirePackage{fancyvrb}
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{%
+  fontsize=\small,
+  frame=single,
+  numbers=left,
+  numbersep=5pt}
+
 \newcommand\mb[1]{\ensuremath{\mathbf{#1}}}
 \newcommand\mathfor{\quad\text{dla}\ }
 \newcommand\mathwhere{\quad\text{gdzie}\ }
@@ -32,6 +24,7 @@
 \renewcommand\leq{\ensuremath{\leqslant}}
 \renewcommand\phi{\varphi}
 \renewcommand\epsilon{\varepsilon}
+\newcommand\dd[1]{\ensuremath{\mathrm{d}#1}}
 \newcommand\NN{\ensuremath{\mathbb{N}}}
 \newcommand\NNplus{\ensuremath{\mathbb{N}}}
 \newcommand\ZZ{\ensuremath{\mathbb{Z}}}

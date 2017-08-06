@@ -63,6 +63,7 @@ bindkey -e
 bindkey '^[[Z' reverse-menu-complete # Shift-Tab to cycle backwards
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+setopt rcquotes # escape ' with ''
 setopt appendhistory autocd extendedglob nomatch \
   notify promptsubst cdablevars alwaystoend
 unsetopt beep
@@ -109,7 +110,7 @@ export VISUAL=$EDITOR
 # config files
 alias editor=$EDITOR
 alias vimconfig='editor $HOME/.config/nvim/init.vim'
-alias zshconfig='nvim -O $zdir/ $HOME/.zshrc.local'
+alias zshconfig='nvim -O $zsh/init.zsh $HOME/.zshrc.local'
 
 # everyday aliases & defaults
 alias ncdu='ncdu -2 -x'
@@ -118,9 +119,10 @@ alias rmdir='rmdir -v'
 alias rmd=rmdir
 alias mkdir='mkdir -p'
 alias mkd='mkdir'
-alias ls='ls --color=auto -Ah --group-directories-first'
-alias l='ls -1A'
+alias ls='command ls --color=auto -1Ah --group-directories-first'
+alias l='command ls --color=auto -Ah --group-directories-first'
 alias ll='ls -lA'
+alias lf='find . -maxdepth 1 \( -not -name .\* \) -type f -print0 | xargs -0r ls --color=auto -h'
 # inter-device mv(1)
 alias imv='rsync -abmv --remove-source-files'
 alias http-serve="python3 -m http.server"
@@ -131,10 +133,13 @@ alias wget='noglob wget'
 alias find='noglob find'
 
 # load local config and everything from .zshrc.d
-[ -f $zsh/.init.zsh.local ] && source ~/.zshrc.local
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 for file in $zsh/layers/*.zsh; do source $file; done
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 if [ -d "$BASE16_SHELL" ]; then
   [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 fi
+
+# disable interrupt data flow (aka ^S/^Q)
+[ "$TTY" ] && stty -ixon

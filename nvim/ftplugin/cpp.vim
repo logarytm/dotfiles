@@ -2,5 +2,5 @@ function! s:Astyle()
   return '!astyle'
 endfunction
 
-let b:format_cmd_function = function('<SID>Astyle')
+let b:format_cmd_func = function('<SID>Astyle')
 setlocal commentstring=//\ %s

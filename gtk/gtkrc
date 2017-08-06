@@ -1,0 +1,5 @@
+include "«paths.themes»/gtk-2.0/gtkrc"
+gtk-icon-theme-name = "«interface.icon-theme»"
+gtk-fallback-icon-theme = "hicolor"
+gtk-font-name = "«interface.font-name» «interface.font-size»"
+gtk-theme-name = "«interface.gtk2-theme»"

@@ -8,9 +8,10 @@
 *pointerColorBackground: bg
 *pointerColorForeground: fg
 
-URxvt.lineSpace: 1
+URxvt.lineSpace: 0
 
-URxvt*font: xft:Iosevka:pixelsize=14
+URxvt*font: xft:D2Coding Powerline:pixelsize=14, xft:Iosevka:pixelsize=14
+/* URxvt*font: xft:Iosevka:size=12 */
 URxvt*boldFont:
 
 URxvt*internalBorder: 0

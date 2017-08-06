@@ -1,0 +1,2 @@
+function bind-to-command {
+}

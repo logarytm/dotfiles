@@ -1,7 +1,32 @@
 #!/usr/bin/env php
 <?php
 require_once __DIR__.'/Parser.php';
+
+class EnvironmentPseudoArray implements ArrayAccess
+{
+    public function offsetGet($key)
+    {
+        return getenv($key);
+    }
+
+    public function offsetSet($key, $value)
+    {
+        throw new Exception('nope');
+    }
+
+    public function offsetUnset($key)
+    {
+        throw new Exception('nope');
+    }
+
+    public function offsetExists($key)
+    {
+        return getenv($key) !== false;
+    }
+}
+
 $config = Toml\Parser::fromFile(__DIR__.'/values.toml');
+$config['env'] = new EnvironmentPseudoArray();
 $input = file_get_contents('php://stdin');
 $output = $input;
 $opening = '«';
@@ -22,7 +47,7 @@ function find_in_config($selector, $config)
     $chunks = explode('.', $selector);
     $value = $config;
     foreach ($chunks as $chunk) {
-        if (!array_key_exists($chunk, $value)) {
+        if (!isset($value[$chunk])) {
             fprintf(STDERR, "error: value %s not defined\n", $selector);
             exit(1);
         }
@@ -30,4 +55,13 @@ function find_in_config($selector, $config)
     }
 
     return $value;
+}
+
+function get($array, $key, $default = null)
+{
+    if (array_key_exists($key, $array)) {
+        return $array[$key];
+    }
+
+    return $default;
 }

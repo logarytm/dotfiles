@@ -1,18 +1,19 @@
 set $mod Mod4
+set $home /home/og
 
-font pango:D2Coding for Powerline Bold 10.5
+font pango:D2Coding Powerline Bold 10.5
 
 floating_modifier $mod
 
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec /home/og/commands/new-terminal
 bindsym $mod+q kill
 
-bindsym $mod+d exec i3-dmenu-desktop --dmenu='dmenu -fn "D2Coding for Powerline:pixelsize=14" -sb \#505050 -i'
+bindsym $mod+d exec i3-dmenu-desktop --dmenu='dmenu -fn "D2Coding Powerline:pixelsize=14" -nb \#202020 -sb \#505050 -i'
 
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -65,7 +66,7 @@ bindsym $mod+F8 move container to workspace 8
 bindsym $mod+F9 move container to workspace 9
 bindsym $mod+F10 move container to workspace 10
 
-new_window  pixel 0
+new_window  normal
 new_float   pixel 2
 
 focus_follows_mouse no
@@ -75,10 +76,10 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exit
 
 mode "resize" {
-  bindsym j resize shrink width 10 px or 10 ppt
-  bindsym k resize grow height 10 px or 10 ppt
-  bindsym l resize shrink height 10 px or 10 ppt
-  bindsym semicolon resize grow width 10 px or 10 ppt
+  bindsym j resize shrink width 10 px
+  bindsym k resize grow height 10 px
+  bindsym l resize shrink height 10 px
+  bindsym semicolon resize grow width 10 px
 
   bindsym Left resize shrink width 10 px or 10 ppt
   bindsym Down resize grow height 10 px or 10 ppt
@@ -89,27 +90,38 @@ mode "resize" {
   bindsym Escape mode "default"
 }
 
-hide_edge_borders both
+gaps inner 0
+gaps outer 0
 
 smart_gaps on
+hide_edge_borders none
 
 bindsym $mod+r mode "resize"
 
 bindsym $mod+Escape exec sudo systemctl suspend
 
-exec_always compton -D0
-exec_always feh --bg-fill ~/Pobrane/wallpaper
-
+exec dropbox
+exec_always dunst
+exec_always compton -D500
+exec_always $home/.fehbg
 exec xrandr --output eDP-1 --off
 
-client.focused #151515 #151515 #b0b0b0 #505050 #505050
-client.focused_inactive #151515 #151515 #b0b0b0 #505050 #505050
-client.unfocused #070707 #070707 #505050 #303030 #303030
-client.urgent #ddb26f #ddb26f #ddb26f #151515 #303030 #303030
+client.focused #151515 #151515 #a0a0a0 #505050 #151515
+client.focused_inactive #151515 #151515 #a0a0a0 #151515 #151515
+client.unfocused #151515 #070707 #505050 #151515 #151515
+client.urgent #ddb26f #ddb26f #ddb26f #151515 #303030 #151515
 
-bindsym Print        exec scrot
-bindsym Shift+Print  exec scrot -s
-bindsym Ctrl+Print   exec scrot --focused
+bindsym --release Print        exec /home/og/commands/take-screenshot full
+bindsym --release Shift+Print  exec /home/og/commands/take-screenshot region
+bindsym --release Ctrl+Print   exec /home/og/commands/take-screenshot focused
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 for_window [title="Compose Message"] floating enable
 for_window [title="Compose Message"] border pixel 2
@@ -117,5 +129,10 @@ for_window [class="qemu-system-.*"] floating enable
 for_window [class="qemu-system-.*"] border pixel 2
 for_window [class=".*VirtualBox.*"] floating enable
 for_window [class=".*VirtualBox.*"] border pixel 2
+
+bar {
+  # height of the bar in pixels
+  height 25
+}
 
 # vim: ft=conf

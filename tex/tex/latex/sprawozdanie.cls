@@ -3,15 +3,16 @@
 
 \newcommand\@ptsize{}
 \newif\if@restonecol
-\newif\if@titlepage
-\newif\if@toc
-\newif\if@handed
-\@titlepagefalse
-\@tocfalse
-\@handedfalse
+\newif\if@titlepage\@titlepagefalse
+\newif\if@toc\@tocfalse
+\newif\if@handed\@handedfalse
+\newif\if@blankpage\@blankpagetrue
+\newif\if@sectionbreak\@sectionbreaktrue
 
 \setlength\paperheight{297mm}
 \setlength\paperwidth{210mm}
+
+\newcommand\@titlepage{\@titlepage@plain}
 
 \DeclareOption{oneside}{\@twosidefalse\@mparswitchfalse}
 \DeclareOption{twoside}{\@twosidetrue\@mparswitchtrue}
@@ -19,15 +20,19 @@
 \DeclareOption{twocolumn}{\@twocolumntrue}
 \DeclareOption{toc}{\@toctrue}
 \DeclareOption{handed}{\@handedtrue}
+\DeclareOption{blankpage}{\@blankpagetrue}
+\DeclareOption{noblankpage}{\@blankpagefalse}
+\DeclareOption{sectionbreak}{\@sectionbreaktrue}
+\DeclareOption{nosectionbreak}{\@sectionbreakfalse}
 
 \ExecuteOptions{oneside,onecolumn}
 \ProcessOptions
 
 \input{cruft.clo}
 \input{metadata.clo}
+\input{utility.clo}
 
-\newcommand\titlepage{%
-	\thispagestyle{empty}
+\newcommand\@titlepage@plain{%
 	\begin{flushright}
 		\if@twodates
 			{\bfseries Wykonano:}\\ \@realised\\[1ex]
@@ -40,37 +45,57 @@
 			\fi
 		\fi
 	\end{flushright}
-	\if@toc\else
-		\vspace{-.2\paperheight}
-		\par\vspace*{\fill}
-	\fi
+	\par\vspace*{\fill}
 	\begin{center}\begin{minipage}{.75\textwidth}
 		\hfill\\[3ex]
 		\begin{center}
 			{\LARGE\bfseries\@subject}\\[3ex]
-			{\small\@faculty\\
+			{\@faculty\\
 			Politechnika Rzeszowska}\\[2ex]
 			\par
-			\large{\bfseries Temat:}\, \@title
+			{\bfseries Temat:}\, \@title
 		\end{center}
 	\end{minipage}\end{center}
-	\if@toc\tableofcontents\else\fi
 	\par\vspace*{\fill}
 	\begin{minipage}[b]{1\textwidth}%
 		\flushright
 		\@author\\
 		\@class\ \@subclass
 	\end{minipage}
+}
+
+\newcommand\titlepage{%
 	\clearpage
 	\thispagestyle{empty}
-	\null
+	\@titlepage
+	\if@blankpage
+		\clearpage
+		\thispagestyle{empty}
+		\null
+		\clearpage
+		\addtocounter{page}{-1}
+	\fi
 	\clearpage
-	\addtocounter{page}{-2}
+	\addtocounter{page}{-1}
+	\if@toc
+		\thispagestyle{empty}
+		\tableofcontents
+		\if@blankpage
+			\clearpage
+			\thispagestyle{empty}
+			\null
+		\fi
+		\clearpage
+		\addtocounter{page}{-1}
+	\fi
 }
 
 \if@twoside\else
 	\RequirePackage[total={6in,8in}]{geometry}
 \fi
-\input{utility.clo}
+\if@sectionbreak
+	\RequirePackage{titlesec}
+	\AtBeginDocument{\newcommand\sectionbreak{\clearpage}}
+\fi
 
 \endinput

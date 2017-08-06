@@ -9,8 +9,8 @@ endfunction
 
 if !exists('no_delete_airline_status_added')
   let no_delete_airline_status_added = 1
-  call airline#add_statusline_func('NoDeleteAirlineFunc')
-  call airline#add_inactive_statusline_func('NoDeleteAirlineFunc')
+  " call airline#add_statusline_func('NoDeleteAirlineFunc')
+  " call airline#add_inactive_statusline_func('NoDeleteAirlineFunc')
 endif
 
 let g:no_delete_illegal_mappings = { 's': 'n,v', 'S': 'n,v', 'd': 'n,v', 'D': 'n,v', 'c': 'n,v', 'C': 'n,v', 'x': 'n,v', 'X': 'n,v', '<bs>': 'i', '<del>': 'i', '<c-w>': 'i', '<c-h>': 'i' }

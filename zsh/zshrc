@@ -1,1 +1,6 @@
+if [[ "$TERM" == "xterm" ]]; then
+  export TERM=xterm-256color
+fi
 source ${XDG_CONFIG_HOME-$HOME/.config}/zsh/init.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

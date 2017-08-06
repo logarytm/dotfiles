@@ -14,9 +14,22 @@
 	brightorange = "#deaf8f"
 	darkergray = "#202020"
 	darkgray = "#303030"
-	brightgray = "#b0b0b0"
+	brightgray = "#a0a0a0"
 	brightergray = "#e0e0e0"
 
 [fonts]
-	terminal = "xft:Iosevka:pixelsize=14"
+	terminal = "xft:D2Coding Powerline:pixelsize=14, xft:Iosevka:pixelsize=14"
+
+[interface]
+	font-name = "Clear Sans"
+	font-size = 10
+	gtk2-theme = "Plano"
+	gtk3-theme = "Zukitre"
+	icon-theme = "Elementary"
+
+[paths]
+	commands = "/home/og/commands"
+	themes = "/run/current-system/sw/share/themes"
+	icons = "/run/current-system/sw/share/icons"
+
 # vim: noet

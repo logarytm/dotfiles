@@ -9,6 +9,10 @@
 \newcommand\@realised{}
 
 \newcommand\kia{Katedra Informatyki i~Automatyki}
+\newcommand\pei{Katedra Elektrotechniki i~Podstaw Informatyki}
+\newcommand\kmisd{Katedra Metrologii i~Systemów Diagnostycznych}
+\newcommand\kpe{Katedra Podstaw Elektroniki}
+\newcommand\zsz{Zakład Systemów Złożonych}
 
 \newcommand\class[1]{\renewcommand\@class{#1}}
 \newcommand\faculty[1]{\renewcommand\@faculty{#1}}
