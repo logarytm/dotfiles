@@ -6,6 +6,8 @@ font pango:D2Coding Powerline Bold 10.5
 floating_modifier $mod
 
 bindsym $mod+Return exec «paths.commands»/new-terminal
+bindsym $mod+w exec google-chrome-stable
+
 bindsym $mod+q kill
 
 bindsym $mod+d exec i3-dmenu-desktop --dmenu='dmenu -fn "D2Coding Powerline:pixelsize=14" -nb \«colors.darkergray» -sb \«colors.gray» -i'
@@ -73,7 +75,7 @@ focus_follows_mouse no
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exit
+bindsym $mod+Shift+e exec xfce4-session-logout
 
 mode "resize" {
   bindsym j resize shrink width 10 px
@@ -100,6 +102,7 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+Escape exec sudo systemctl suspend
 
+exec_always numlockx on
 exec dropbox
 exec_always dunst
 exec_always compton -D500

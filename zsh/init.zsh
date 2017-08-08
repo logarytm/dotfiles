@@ -133,8 +133,8 @@ alias wget='noglob wget'
 alias find='noglob find'
 
 # load local config and everything from .zshrc.d
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 for file in $zsh/layers/*.zsh; do source $file; done
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 if [ -d "$BASE16_SHELL" ]; then
