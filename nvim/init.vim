@@ -140,7 +140,7 @@ nnoremap <silent> <a-d> :Bdelete<cr>
 nnoremap <silent> <a-q> :wqa<cr>
 nnoremap <silent> <a-w> :update<cr>
 
-nnoremap <silent> <leader>z :Goyo<cr>:Limelight<cr>
+nnoremap <silent> <leader>z :Goyo<cr>
 nnoremap <silent> <leader>t :terminal<cr>
 
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>

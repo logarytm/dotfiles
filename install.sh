@@ -18,7 +18,7 @@ install() {
 }
 
 _write_install_manifest() {
-	echo $1 >> install_manifest.txt
+	echo $1 >> install.log
 }
 
 _install() {

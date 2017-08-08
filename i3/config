@@ -73,7 +73,7 @@ focus_follows_mouse no
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exit
+bindsym $mod+Shift+e exec xfce4-session-logout
 
 mode "resize" {
   bindsym j resize shrink width 10 px
@@ -98,7 +98,7 @@ hide_edge_borders none
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Escape exec sudo systemctl suspend
+bindsym $mod+Escape exec i3lock
 
 exec dropbox
 exec_always dunst
@@ -133,6 +133,15 @@ for_window [class=".*VirtualBox.*"] border pixel 2
 bar {
   # height of the bar in pixels
   height 25
+
+  colors {
+    background «colors.black»
+    separator «colors.black»
+    # border background text
+    focused_workspace «colors.brightgray» «colors.brightgray» «colors.black»
+    active_workspace «colors.black» «colors.black» «colors.black»
+    inactive_workspace «colors.brightgray» «colors.darkgray» «colors.darkgray»
+  }
 }
 
 # vim: ft=conf
