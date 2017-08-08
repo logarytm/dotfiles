@@ -10,5 +10,6 @@ x11/Xresources:$HOME/.Xresources
 x11/xprofile:$HOME/.xprofile
 x11/XCompose:$HOME/.XCompose
 nvim:$XDG_CONFIG_HOME/nvim
-_build/gtk/gtkrc-2.0:$HOME/.gtkrc-2.0
+_build/i3/config:$XDG_CONFIG_HOME/i3/config
+_build/gtk/gtkrc:$HOME/.gtkrc-2.0
 _build/gtk/settings.ini:$XDG_CONFIG_HOME/gtk-3.0/settings.ini

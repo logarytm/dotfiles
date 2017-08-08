@@ -1,14 +1,14 @@
 set $mod Mod4
-set $home /home/og
+set $home «env.HOME»
 
 font pango:D2Coding Powerline Bold 10.5
 
 floating_modifier $mod
 
-bindsym $mod+Return exec /home/og/commands/new-terminal
+bindsym $mod+Return exec «paths.commands»/new-terminal
 bindsym $mod+q kill
 
-bindsym $mod+d exec i3-dmenu-desktop --dmenu='dmenu -fn "D2Coding Powerline:pixelsize=14" -nb \#202020 -sb \#505050 -i'
+bindsym $mod+d exec i3-dmenu-desktop --dmenu='dmenu -fn "D2Coding Powerline:pixelsize=14" -nb \«colors.darkergray» -sb \«colors.gray» -i'
 
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -106,14 +106,14 @@ exec_always compton -D500
 exec_always $home/.fehbg
 exec xrandr --output eDP-1 --off
 
-client.focused #151515 #151515 #a0a0a0 #505050 #151515
-client.focused_inactive #151515 #151515 #a0a0a0 #151515 #151515
-client.unfocused #151515 #070707 #505050 #151515 #151515
-client.urgent #ddb26f #ddb26f #ddb26f #151515 #303030 #151515
+client.focused «colors.black» «colors.black» «colors.brightgray» «colors.gray» «colors.black»
+client.focused_inactive «colors.black» «colors.black» «colors.brightgray» «colors.black» «colors.black»
+client.unfocused «colors.black» «colors.darkblack» «colors.gray» «colors.black» «colors.black»
+client.urgent «colors.yellow» «colors.yellow» «colors.yellow» «colors.black» «colors.darkgray» «colors.black»
 
-bindsym --release Print        exec /home/og/commands/take-screenshot full
-bindsym --release Shift+Print  exec /home/og/commands/take-screenshot region
-bindsym --release Ctrl+Print   exec /home/og/commands/take-screenshot focused
+bindsym --release Print        exec «paths.commands»/take-screenshot full
+bindsym --release Shift+Print  exec «paths.commands»/take-screenshot region
+bindsym --release Ctrl+Print   exec «paths.commands»/take-screenshot focused
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
