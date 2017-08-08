@@ -1,1 +1,1 @@
-Guifont! Iosevka:h13
+Guifont! D2Coding Powerline:h10

@@ -1,6 +1,6 @@
 [colors]
-	darkblack = "#070707"
-	black = "#151515"
+	darkblack = "#171717"
+	black = "#2d2d2d"
 	red = "#fb9fb1"
 	green = "#acc267"
 	yellow = "#ddb26f"
@@ -21,10 +21,10 @@
 	terminal = "xft:D2Coding Powerline:pixelsize=14, xft:Iosevka:pixelsize=14"
 
 [interface]
-	font-name = "Clear Sans"
+	font-name = "Roboto"
 	font-size = 10
-	gtk2-theme = "Plano"
-	gtk3-theme = "Zukitre"
+	gtk2-theme = "Clearlooks-Phenix"
+	gtk3-theme = "Clearlooks-Phenix"
 	icon-theme = "Elementary"
 
 [paths]

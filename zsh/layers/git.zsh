@@ -37,3 +37,5 @@ alias gst='git stash'
 alias gsta='git stash apply'
 
 alias gunstage='git reset HEAD'
+
+alias gf='git fetch'

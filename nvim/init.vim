@@ -1,6 +1,8 @@
 filetype plugin indent on
 set laststatus=2
 
+let use_airline = 1
+
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -38,9 +40,18 @@ Plug 'LnL7/vim-nix'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-bbye'
 Plug 'nelsyeung/twig.vim'
+Plug 'fsharp/vim-fsharp'
 Plug 'syngan/vim-vimlint'
 Plug 'ynkdir/vim-vimlparser'
 Plug 'cespare/vim-toml'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+
+let g:rainbow_active = 0
+let g:rainbow_conf = { 'ctermfgs': [1, 3, 2, 6, 4, 5] }
+" let g:rainbow_conf = { 'ctermfgs': [255, 252, 249, 246, 243] }
+" let g:rainbow_conf = { 'ctermfgs': [160, 208, 226, 76, 45, 33, 163] }
+Plug 'luochen1990/rainbow'
 
 let g:neomake_error_sign = { 'text': '▶▶' }
 let g:neomake_warning_sign = { 'text': '▶▶' }
@@ -53,11 +64,14 @@ let g:syntastic_style_error_symbol = '▶▶'
 let g:syntastic_warning_symbol = '▶▶'
 let g:syntastic_style_warning_symbol = '▶▶'
 
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+if use_airline
+  let g:airline_powerline_fonts = 1
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#show_buffers = 1
+  let g:airline#extensions#whitespace#enabled = 1
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+endif
 
 let g:easytags_async = 1
 set tags=./tags;
@@ -87,6 +101,8 @@ set exrc
 set secure
 set noswapfile
 
+set lazyredraw
+
 set gdefault
 set wrap
 set textwidth=80
@@ -108,6 +124,8 @@ set conceallevel=2
 set completeopt=menu
 
 set clipboard=unnamedplus
+
+set smartindent
 
 set splitright
 set splitbelow
@@ -197,9 +215,15 @@ function! Tab_Or_Complete()
 endfunction
 inoremap <silent> <tab> <c-r>=Tab_Or_Complete()<cr>
 
+command! -nargs=1 Tabs set ts=<args> sts=<args> sw=<args> noet
+command! -nargs=1 Spaces set ts=8 sts=8 sw=<args> et
+
 augroup FileTypes
   autocmd BufNewFile,BufEnter *.tex,*.cls,*.clo set filetype=tex
+  autocmd BufNewFile,BufEnter *.tex,*.cls,*.clo set noet ts=2 sts=2 sw=2
+  autocmd BufNewFile,BufEnter *.scm,*.lisp set et ts=2 sts=2 sw=2
   autocmd BufNewFile,BufEnter *.zsh,*.sh,*.bash set ts=2 sts=2 sw=2
+  autocmd BufNewFile,BufEnter *.scm,*.lisp set ts=2 sts=2 sw=2 et | RainbowToggleOn
 augroup end
 
 augroup SaveOnFocusLost
@@ -240,3 +264,9 @@ command! ReloadFile e!
 command! -nargs=1 Sp set spelllang=<args>
 
 nnoremap <leader>f :call Format('%')<CR>
+
+imap <C-q> <C-y>,
+
+inoremap <C-j>u <C-r>=py3eval('str(__import__("uuid").uuid4())')<cr>
+
+noremap <silent> <space><space> /«<cr>"_cf»

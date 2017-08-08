@@ -6,6 +6,8 @@ font pango:D2Coding Powerline Bold 10.5
 floating_modifier $mod
 
 bindsym $mod+Return exec «paths.commands»/new-terminal
+bindsym $mod+w exec google-chrome-stable
+
 bindsym $mod+q kill
 
 bindsym $mod+d exec i3-dmenu-desktop --dmenu='dmenu -fn "D2Coding Powerline:pixelsize=14" -nb \«colors.darkergray» -sb \«colors.gray» -i'
@@ -98,9 +100,11 @@ hide_edge_borders none
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Escape exec i3lock
+bindsym $mod+a exec i3lock-fancy
 
-exec dropbox
+exec redshift
+exec_always numlockx on
+exec dropbox start
 exec_always dunst
 exec_always compton -D500
 exec_always $home/.fehbg
@@ -108,20 +112,21 @@ exec xrandr --output eDP-1 --off
 
 client.focused «colors.black» «colors.black» «colors.brightgray» «colors.gray» «colors.black»
 client.focused_inactive «colors.black» «colors.black» «colors.brightgray» «colors.black» «colors.black»
-client.unfocused «colors.black» «colors.darkblack» «colors.gray» «colors.black» «colors.black»
+client.unfocused «colors.darkblack» «colors.darkblack» «colors.gray» «colors.black» «colors.black»
 client.urgent «colors.yellow» «colors.yellow» «colors.yellow» «colors.black» «colors.darkgray» «colors.black»
 
 bindsym --release Print        exec «paths.commands»/take-screenshot full
 bindsym --release Shift+Print  exec «paths.commands»/take-screenshot region
 bindsym --release Ctrl+Print   exec «paths.commands»/take-screenshot focused
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioRaiseVolume exec --no-startup-id «paths.commands»/raise-volume
+bindsym XF86AudioLowerVolume exec --no-startup-id «paths.commands»/lower-volume
+bindsym XF86AudioMute        exec --no-startup-id «paths.commands»/toggle-mute
+bindsym XF86AudioPlay        exec playerctl play-pause
+bindsym XF86AudioPause       exec playerctl play-pause
+bindsym XF86AudioPlayPause   exec playerctl play-pause
+bindsym XF86AudioNext        exec playerctl next
+bindsym XF86AudioPrev        exec playerctl previous
 
 for_window [title="Compose Message"] floating enable
 for_window [title="Compose Message"] border pixel 2
@@ -133,6 +138,8 @@ for_window [class=".*VirtualBox.*"] border pixel 2
 bar {
   # height of the bar in pixels
   height 25
+  status_command i3blocks -c $home/.config/i3blocks.conf
+  tray_output none
 
   colors {
     background «colors.black»

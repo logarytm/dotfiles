@@ -1,5 +1,5 @@
-#define bg #151515
-#define fg #d0d0d0
+#define bg «colors.black»
+#define fg «colors.silver»
 
 *background: bg
 *foreground: fg
@@ -10,8 +10,7 @@
 
 URxvt.lineSpace: 0
 
-URxvt*font: xft:D2Coding Powerline:pixelsize=14, xft:Iosevka:pixelsize=14
-/* URxvt*font: xft:Iosevka:size=12 */
+URxvt*font: «fonts.terminal»
 URxvt*boldFont:
 
 URxvt*internalBorder: 0
@@ -29,7 +28,7 @@ URxvt.keysym.Control-Right: \033[1;5C
 URxvt.buffered: true
 
 URxvt.fading: 20
-URxvt.fadeColor: #151515
+URxvt.fadeColor: «colors.black»
 
 URxvt.perl-ext-common: default,selection-to-clipboard,pasta,matcher,keyboard-select,bell-command
 URxvt.bell-command: notify-send "rxvt-unicode: bell!" --icon=utilities-terminal
