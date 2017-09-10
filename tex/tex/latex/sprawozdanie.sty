@@ -2,27 +2,30 @@
 \ProvidesPackage{sprawozdanie}[2017/05/01]
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage{fancyhdr}
-\RequirePackage{float}
-\RequirePackage{mathtools,amssymb,amsfonts}
+\RequirePackage[a4paper]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{mathtools,amsthm,amsbsy,amssymb,amsfonts}
 \RequirePackage{polski}
 \RequirePackage[polish]{babel}
+\RequirePackage{fancyhdr}
+\RequirePackage{float}
 \RequirePackage{xcolor}
 \RequirePackage{upquote}
+\RequirePackage{pslatex}
 \RequirePackage{pbox}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{fancyvrb}
 
-\newif\if@TableOfContents\@TableOfContentsfalse
-\newif\if@UseHandedDate\@UseHandedDatefalse
-\newif\if@BlankPages\@BlankPagesfalse
-\newif\if@PageBreakAtSection\@PageBreakAtSectionfalse
-\newif\if@RealisedAndHanded\@RealisedAndHandedfalse
+\newif\if@toc\@tocfalse
+\newif\if@blank\@blankfalse
+\newif\if@break\@breakfalse
 
-\DeclareOption{TableOfContents}{\@TableOfContentstrue}
-\DeclareOption{HandedDate}{\@HandedDatetrue}
-\DeclareOption{BlankPages}{\@BlankPagestrue}
-\DeclareOption{PageBreakAtSection}{\@PageBreakAtSectiontrue}
+\newif\if@handed\@handedfalse
+\newif\if@realised\@realisedfalse
+
+\DeclareOption{toc}{\@toctrue}
+\DeclareOption{blank}{\@blanktrue}
+\DeclareOption{break}{\@breaktrue}
 
 \ExecuteOptions{}
 
@@ -34,6 +37,7 @@
 \newcommand\@type{}
 \newcommand\@subject{}
 \newcommand\@realised{}
+\newcommand\@handed{}
 
 \newcommand\kia{Katedra Informatyki i~Automatyki}
 \newcommand\pei{Katedra Elektrotechniki i~Podstaw Informatyki}
@@ -45,24 +49,22 @@
 \newcommand\faculty[1]{\renewcommand\@faculty{#1}}
 \newcommand\type[1]{\renewcommand\@type{#1}}
 \newcommand\subject[1]{\renewcommand\@subject{#1}}
-\newcommand\handed[1]{\renewcommand\@date{#1}}
-\newcommand\realised[1]{\renewcommand\@realised{#1}\@RealisedAndHandedtrue}
+\newcommand\handed[1]{\renewcommand\@handed{#1}\@handedtrue}
+\newcommand\realised[1]{\renewcommand\@realised{#1}\@realisedtrue}
 
-\newcommand\@MakeTitlePage{%
+\providecommand\@maketitle{}
+\renewcommand\@maketitle{%
   \begin{flushright}
-    \if@RealisedAndHanded
+    \if@realised
       {\bfseries Wykonano:}\\
       \@realised
-
-      \bigskip
-      {\bfseries Oddano:}\\
-      \@date
-    \else
-      \if@UseHandedDate
-        {\bfseries Oddano:}\, \@date\\
-      \else
-        {\bfseries Wykonano:}\, \@date\\
+      \if@handed
+        \par\bigskip
       \fi
+    \fi
+    \if@handed
+      {\bfseries Oddano:}\\
+      \@handed
     \fi
   \end{flushright}
   \par\vspace*{\fill}
@@ -78,7 +80,7 @@
       Politechnika Rzeszowska
       \bigskip
 
-      {\bfseries Temat:}\, \@title
+      {\bfseries Temat:} \@title
     \end{center}
   \end{minipage}\end{center}
 
@@ -93,8 +95,8 @@
 \renewcommand\maketitle{%
   \clearpage
   \thispagestyle{empty}
-  \@MakeTitlePage
-  \if@BlankPages
+  \@maketitle
+  \if@blank
     \clearpage
     \thispagestyle{empty}
     \null
@@ -103,10 +105,10 @@
   \fi
   \clearpage
   \addtocounter{page}{-1}
-  \if@TableOfContents
+  \if@toc
     \thispagestyle{empty}
     \tableofcontents
-    \if@BlankPages
+    \if@blank
       \clearpage
       \thispagestyle{empty}
       \null
@@ -116,7 +118,8 @@
   \fi
 }
 
-\if@PageBreakAtSection
+\input{makra}
+\if@break
   \RequirePackage{titlesec}
   \AtBeginDocument{\newcommand\sectionbreak{\clearpage}}
 \fi

@@ -49,8 +49,6 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 let g:rainbow_active = 0
 let g:rainbow_conf = { 'ctermfgs': [1, 3, 2, 6, 4, 5] }
-" let g:rainbow_conf = { 'ctermfgs': [255, 252, 249, 246, 243] }
-" let g:rainbow_conf = { 'ctermfgs': [160, 208, 226, 76, 45, 33, 163] }
 Plug 'luochen1990/rainbow'
 
 let g:neomake_error_sign = { 'text': '▶▶' }
@@ -116,7 +114,6 @@ set hidden
 set number
 set relativenumber
 set ignorecase
-" set infercase
 set incsearch
 set nohlsearch
 set wildignorecase
@@ -130,14 +127,28 @@ set smartindent
 set splitright
 set splitbelow
 
-set noexpandtab
+set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set cinoptions+=:0
 set cinoptions+=g0
 set list
-execute 'set listchars=tab:›\ '
+execute 'set listchars=tab:›\ ,nbsp:~,trail:·'
+
+if !exists('g:syntax')
+  let g:syntax = 1
+  syntax on
+endif
+
+function! ToggleSyntaxHighlighting()
+  let g:syntax = 1 - g:syntax
+  if g:syntax == 1
+    syntax on
+  else
+    syntax off
+  endif
+endfunction
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
@@ -216,25 +227,25 @@ endfunction
 inoremap <silent> <tab> <c-r>=Tab_Or_Complete()<cr>
 
 command! -nargs=1 Tabs set ts=<args> sts=<args> sw=<args> noet
-command! -nargs=1 Spaces set ts=8 sts=8 sw=<args> et
+command! -nargs=1 Spaces set ts=10 sts=10 sw=<args> et
 
 augroup FileTypes
   autocmd BufNewFile,BufEnter *.tex,*.cls,*.clo set filetype=tex
-  autocmd BufNewFile,BufEnter *.tex,*.cls,*.clo set noet ts=2 sts=2 sw=2
-  autocmd BufNewFile,BufEnter *.scm,*.lisp set et ts=2 sts=2 sw=2
-  autocmd BufNewFile,BufEnter *.zsh,*.sh,*.bash set ts=2 sts=2 sw=2
-  autocmd BufNewFile,BufEnter *.scm,*.lisp set ts=2 sts=2 sw=2 et | RainbowToggleOn
+  autocmd BufNewFile,BufEnter *.scm,*.lisp RainbowToggleOn
 augroup end
 
-augroup SaveOnFocusLost
+augroup Indentation
+  autocmd BufNewFile,BufEnter *.tex,*.cls,*.clo Spaces 2
+  autocmd BufNewFile,BufEnter *.zsh,*.sh,*.bash Spaces 2
+  autocmd BufNewFile,BufEnter *.scm,*.lisp      Spaces 2
+augroup end
+
+augroup WriteOnFocusLost
   autocmd BufLeave,FocusLost * silent! wall
 augroup end
 
-augroup BetterWhitespace
+augroup StripWhitespace
   autocmd BufEnter * EnableStripWhitespaceOnSave
-augroup end
-
-augroup FormatCommands
 augroup end
 
 let g:last_bufnr = 1

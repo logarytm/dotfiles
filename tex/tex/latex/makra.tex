@@ -1,20 +1,24 @@
+\RequirePackage{fancyvrb}
+\RequirePackage{amsbsy,amsfonts,amssymb,amsthm,mathtools}
+
 \RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{%
   fontsize=\small,
   frame=single,
   numbers=left,
+  tabsize=2,
   numbersep=5pt}
 
 \newcommand\mb[1]{\ensuremath{\mathbf{#1}}}
 \newcommand\mf[1]{\mathrm{#1}}
-\newcommand\mathfor{\quad\text{dla}\ }
-\newcommand\mathwhere{\quad\text{gdzie}\ }
+\newcommand\dla{\quad\text{dla}\ }
+\newcommand\gdzie{\quad\text{gdzie}\ }
 \renewcommand\geq{\ensuremath{\geqslant}}
 \renewcommand\leq{\ensuremath{\leqslant}}
 \renewcommand\phi{\varphi}
 \renewcommand\epsilon{\varepsilon}
 \newcommand\dd[1]{\ensuremath{\mathrm{d}#1}}
 \newcommand\NN{\ensuremath{\mathbb{N}}}
-\newcommand\NNplus{\ensuremath{\mathbb{N}}}
+\newcommand\NNp{\ensuremath{\mathbb{N}_{+}}}
 \newcommand\ZZ{\ensuremath{\mathbb{Z}}}
 \newcommand\QQ{\ensuremath{\mathbb{Q}}}
 \newcommand\RR{\ensuremath{\mathbb{R}}}

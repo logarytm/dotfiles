@@ -139,7 +139,6 @@ bar {
   # height of the bar in pixels
   height 25
   status_command i3blocks -c $home/.config/i3blocks.conf
-  tray_output none
 
   colors {
     background «colors.black»
