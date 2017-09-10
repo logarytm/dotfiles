@@ -11,4 +11,6 @@ bookmarks
 tagged
 
 zsh/plugins
+zsh/custom/*
+!zsh/custom/.gitkeep
 _build
