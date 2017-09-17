@@ -46,6 +46,7 @@ Plug 'ynkdir/vim-vimlparser'
 Plug 'cespare/vim-toml'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'posva/vim-vue'
 
 let g:rainbow_active = 0
 let g:rainbow_conf = { 'ctermfgs': [1, 3, 2, 6, 4, 5] }
@@ -134,7 +135,7 @@ set shiftwidth=2
 set cinoptions+=:0
 set cinoptions+=g0
 set list
-execute 'set listchars=tab:›\ ,nbsp:~,trail:·'
+execute 'set listchars=tab:›\ ,nbsp:█,trail:·'
 
 if !exists('g:syntax')
   let g:syntax = 1
@@ -185,6 +186,8 @@ imap <c-l> <esc>mpguiw`pa
 inoremap <silent> <esc> <esc>:silent! update<cr>
 inoremap <silent> <c-c> <c-c>:silent! update<cr>
 
+noremap <silent> <space><space> /«<cr>"_cf»
+
 inoremap jk <esc>
 
 noremap ; l
@@ -193,7 +196,7 @@ noremap k gj
 noremap j h
 noremap h <nop>
 
-nnoremap Q vipgqq
+nnoremap Q gqip
 nnoremap K <nop>
 
 noremap $ g$
@@ -279,5 +282,4 @@ nnoremap <leader>f :call Format('%')<CR>
 imap <C-q> <C-y>,
 
 inoremap <C-j>u <C-r>=py3eval('str(__import__("uuid").uuid4())')<cr>
-
-noremap <silent> <space><space> /«<cr>"_cf»
+inoremap <C-j>d <C-r>=py3eval('str(__import__("datetime").datetime.now().isoformat())')<cr>

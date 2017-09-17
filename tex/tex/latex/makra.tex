@@ -1,9 +1,17 @@
 \RequirePackage{fancyvrb}
 \RequirePackage{amsbsy,amsfonts,amssymb,amsthm,mathtools}
 
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{%
+  fontsize=\small,
+  frame=leftline,
+  framesep=5pt,
+  numbers=left,
+  tabsize=2,
+  numbersep=5pt}
 \RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{%
   fontsize=\small,
-  frame=single,
+  frame=leftline,
+  framesep=5pt,
   numbers=left,
   tabsize=2,
   numbersep=5pt}

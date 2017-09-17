@@ -11,10 +11,14 @@
 \RequirePackage{float}
 \RequirePackage{xcolor}
 \RequirePackage{upquote}
-\RequirePackage{pslatex}
+\RequirePackage{enumitem}
+\RequirePackage{graphicx}
 \RequirePackage{pbox}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{fancyvrb}
+\RequirePackage[lighttt]{lmodern}
+\RequirePackage{parskip}
+\usepackage[l2tabu]{nag}
 
 \newif\if@toc\@tocfalse
 \newif\if@blank\@blankfalse
@@ -54,42 +58,27 @@
 
 \providecommand\@maketitle{}
 \renewcommand\@maketitle{%
+  \begin{center}
+    {\large Politechnika Rzeszowska}\\
+    {\large Wydział Elektrotechniki i Informatyki}\\
+    {\large\bfseries \@faculty}
+  \end{center}
+  \vfill
+  \begin{center}
+    {\LARGE\bfseries\scshape \@subject}
+    \\[1em]
+    {\Large \@type}
+    \\[1em]
+    \begin{minipage}{.75\textwidth}
+      \centering
+      {\large \@title}
+    \end{minipage}
+  \end{center}
+  \vfill
   \begin{flushright}
-    \if@realised
-      {\bfseries Wykonano:}\\
-      \@realised
-      \if@handed
-        \par\bigskip
-      \fi
-    \fi
-    \if@handed
-      {\bfseries Oddano:}\\
-      \@handed
-    \fi
-  \end{flushright}
-  \par\vspace*{\fill}
-
-  \begin{center}\begin{minipage}{.75\textwidth}
-    \hfill\\[3ex]
-    \begin{center}
-      {\Large\bfseries\@subject}
-
-      \bigskip
-      \@faculty
-
-      Politechnika Rzeszowska
-      \bigskip
-
-      {\bfseries Temat:} \@title
-    \end{center}
-  \end{minipage}\end{center}
-
-  \par\vspace*{\fill}
-  \begin{minipage}[b]{\textwidth}%
-    \flushright
     \@author\\
-    \@class\ \@subclass
-  \end{minipage}
+    \@subclass\ \@class
+  \end{flushright}
 }
 
 \renewcommand\maketitle{%
@@ -120,8 +109,8 @@
 
 \input{makra}
 \if@break
-  \RequirePackage{titlesec}
-  \AtBeginDocument{\newcommand\sectionbreak{\clearpage}}
+  \let\oldsection\section
+  \renewcommand\section{\clearpage\oldsection}
 \fi
 
 \endinput

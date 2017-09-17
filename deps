@@ -7,3 +7,4 @@ zsh/plugins/zsh-manydots-magtc:https://github.com/knu/zsh-manydots-magic.git
 zsh/plugins/zsh-manydots-magic:https://github.com/knu/zsh-manydots-magic.git
 zsh/plugins/zsh-nvm:https://github.com/lukechilds/zsh-nvm.git
 zsh/plugins/powerlevel9k:https://github.com/bhilburn/powerlevel9k.git
+zsh/plugins/fast-syntax-highlighting:https://github.com/zdharma/fast-syntax-highlighting

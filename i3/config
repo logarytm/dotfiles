@@ -1,16 +1,17 @@
 set $mod Mod4
 set $home «env.HOME»
 
-font pango:D2Coding Powerline Bold 10.5
+font pango:«fonts.windowmanager»
 
 floating_modifier $mod
 
 bindsym $mod+Return exec «paths.commands»/new-terminal
 bindsym $mod+w exec google-chrome-stable
+bindsym $mod+s exec xdg-open $home/Stos
 
 bindsym $mod+q kill
 
-bindsym $mod+d exec i3-dmenu-desktop --dmenu='dmenu -fn "D2Coding Powerline:pixelsize=14" -nb \«colors.darkergray» -sb \«colors.gray» -i'
+bindsym $mod+d exec i3-dmenu-desktop --dmenu='dmenu -fn "«fonts.dmenu»" -nb \«colors.darkergray» -sb \«colors.gray» -i'
 
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -35,7 +36,6 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+i split toggle
 bindsym $mod+Shift+f fullscreen toggle
 
-bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -142,7 +142,7 @@ for_window [class=".*VirtualBox.*"] floating enable
 for_window [class=".*VirtualBox.*"] border pixel 2
 
 bar {
-  height 24
+  height 32
   status_command i3blocks -c $home/.config/i3blocks.conf
   tray_output none
 

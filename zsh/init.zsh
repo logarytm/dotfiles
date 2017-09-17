@@ -35,16 +35,14 @@ source_if_exists $zsh/custom/pre.zsh
 fpath=($zsh/plugins/zsh-completions/src \
   $zsh/plugins/zsh-syntax-highlighting \
   $zsh/plugins/zsh-history-substring-search \
-  $zsh/plugins/z \
   $zsh/plugins/zsh-async \
   $zsh/plugins/zsh-manydots-magic \
   $fpath)
 
 if ! [ "$plugins_loaded" ]; then
   source $zsh/plugins/zsh-async/async.zsh
-  source $zsh/plugins/z/z.sh
   source $zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-  source $zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source $zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
   source_unless disable_powerlevel9k $zsh/plugins/powerlevel9k/powerlevel9k.zsh-theme
 
   plugins_loaded=1
