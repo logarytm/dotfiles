@@ -18,9 +18,10 @@
 	brightergray = "#e0e0e0"
 
 [fonts]
-	terminal = "xft:D2Coding Powerline:pixelsize=16, xft:Iosevka:pixelsize=16"
-	windowmanager = "D2Coding Powerline Bold 12"
-	dmenu = "D2Coding Powerline:pixelsize=16"
+	# terminal = "xft:Source Code Pro for Powerline:pixelsize=14, xft:Iosevka:pixelsize=14"
+	terminal = "xft:Input Mono Narrow:pixelsize=14, xft:Iosevka:pixelsize=14"
+	windowmanager = "Input Mono Narrow Medium 10.5"
+	dmenu = "Input Mono Narrow:pixelsize=14"
 
 [interface]
 	font-name = "Roboto"

@@ -18,12 +18,17 @@ let maplocalleader = ","
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'altercation/vim-colors-solarized'
+Plug 'ternjs/tern_for_vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'vim-scripts/Rename2'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/tpope-vim-abolish'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
@@ -32,7 +37,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'lervag/vimtex'
-Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'mtth/scratch.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'alunny/pegjs-vim'
@@ -47,6 +51,21 @@ Plug 'cespare/vim-toml'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'posva/vim-vue'
+Plug 'jiangmiao/auto-pairs'
+Plug 'chaoren/vim-wordmotion'
+
+Plug 'Chiel92/vim-autoformat'
+
+Plug 'Shougo/denite.nvim'
+
+Plug 'padawan-php/deoplete-padawan'
+Plug 'zchee/deoplete-clang'
+Plug 'carlitux/deoplete-ternjs'
+Plug 'https://github.com/Shougo/neco-vim'
+Plug 'Shougo/neco-syntax'
+
+let g:deoplete#enable_at_startup = 1
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 let g:rainbow_active = 0
 let g:rainbow_conf = { 'ctermfgs': [1, 3, 2, 6, 4, 5] }
@@ -118,7 +137,7 @@ set ignorecase
 set incsearch
 set nohlsearch
 set wildignorecase
-set conceallevel=2
+set conceallevel=0
 set completeopt=menu
 
 set clipboard=unnamedplus
@@ -163,9 +182,9 @@ highlight clear WildMenu
 highlight WildMenu cterm=reverse
 highlight ExtraWhitespace ctermbg=19
 
-nnoremap <c-b> :Buffers<cr>
-nnoremap <c-c> :Commands<cr>
-nnoremap <c-p> :Files<cr>
+nnoremap <silent> <c-b> :Buffers<cr>
+noremap  <silent> <C-q> :Commands<cr>
+nnoremap <silent> <c-p> :Files<cr>
 nnoremap <silent> <a-d> :Bdelete<cr>
 nnoremap <silent> <a-q> :wqa<cr>
 nnoremap <silent> <a-w> :update<cr>
@@ -176,29 +195,22 @@ nnoremap <silent> <leader>t :terminal<cr>
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
-nnoremap <s-tab> :bp<cr>
-nnoremap <tab> :bn<cr>
+nnoremap <silent> <s-tab> :bp<cr>
+nnoremap <silent> <tab> :bn<cr>
 
-nnoremap <c-u> mpgUiw`p
-nnoremap <c-l> mpguiw`p
-imap <c-u> <esc>mpgUiw`pa
-imap <c-l> <esc>mpguiw`pa
 inoremap <silent> <esc> <esc>:silent! update<cr>
 inoremap <silent> <c-c> <c-c>:silent! update<cr>
 
 noremap <silent> <space><space> /«<cr>"_cf»
-
-inoremap jk <esc>
 
 noremap ; l
 noremap l gk
 noremap k gj
 noremap j h
 noremap h <nop>
-
-nnoremap Q gqip
+nnoremap QQ gqip
+nnoremap Qq gqq
 nnoremap K <nop>
-
 noremap $ g$
 noremap 0 g^
 noremap ^ g^
@@ -283,3 +295,6 @@ imap <C-q> <C-y>,
 
 inoremap <C-j>u <C-r>=py3eval('str(__import__("uuid").uuid4())')<cr>
 inoremap <C-j>d <C-r>=py3eval('str(__import__("datetime").datetime.now().isoformat())')<cr>
+nmap sw ysiw
+
+inoremap <leader>; <C-o>A;

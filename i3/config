@@ -142,7 +142,7 @@ for_window [class=".*VirtualBox.*"] floating enable
 for_window [class=".*VirtualBox.*"] border pixel 2
 
 bar {
-  height 32
+  height 24
   status_command i3blocks -c $home/.config/i3blocks.conf
   tray_output none
 

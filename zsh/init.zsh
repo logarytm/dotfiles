@@ -1,13 +1,17 @@
-autoload -Uz compinit
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
+if ! [ "$avoid_sourcing" ]; then
+  autoload -Uz compinit
+  if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+  else
+    compinit -C
+  fi
 fi
+
 autoload colors && colors
 autoload prompt && prompt off
 zmodload zsh/regex
 zmodload zsh/complist
+
 
 function source_if_exists {
   for f in $@; do
@@ -33,21 +37,21 @@ source_if_exists $zsh/custom/pre.zsh
 [ -f ~/.dircolors ] && eval "$(dircolors ~/.dircolors)"
 
 fpath=($zsh/plugins/zsh-completions/src \
-  $zsh/plugins/zsh-syntax-highlighting \
   $zsh/plugins/zsh-history-substring-search \
   $zsh/plugins/zsh-async \
   $zsh/plugins/zsh-manydots-magic \
   $fpath)
 
 if ! [ "$plugins_loaded" ]; then
+  source $zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
   source $zsh/plugins/zsh-async/async.zsh
   source $zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-  source $zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
   source_unless disable_powerlevel9k $zsh/plugins/powerlevel9k/powerlevel9k.zsh-theme
 
   plugins_loaded=1
 fi
 
+FAST_HIGHLIGHT_STYLES[variable]=""
 autoload -Uz manydots-magic && manydots-magic
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
