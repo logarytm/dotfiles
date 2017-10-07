@@ -2,3 +2,4 @@ tags
 .idea
 .exrc
 composer.phar
+.tern-port

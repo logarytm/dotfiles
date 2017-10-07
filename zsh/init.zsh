@@ -44,6 +44,7 @@ fpath=($zsh/plugins/zsh-completions/src \
 
 if ! [ "$plugins_loaded" ]; then
   source $zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+  FAST_HIGHLIGHT_STYLES[variable]=""
   source $zsh/plugins/zsh-async/async.zsh
   source $zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
   source_unless disable_powerlevel9k $zsh/plugins/powerlevel9k/powerlevel9k.zsh-theme
@@ -51,7 +52,6 @@ if ! [ "$plugins_loaded" ]; then
   plugins_loaded=1
 fi
 
-FAST_HIGHLIGHT_STYLES[variable]=""
 autoload -Uz manydots-magic && manydots-magic
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down

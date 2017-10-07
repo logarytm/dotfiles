@@ -1,2 +1,3 @@
-set font "Sans Regular 11"
+set font "Input Mono Condensed Medium 10"
+set default-bg "#202020"
 set guioptions ""

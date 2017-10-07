@@ -5,14 +5,19 @@ let use_airline = 1
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
-endif
+endi
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
 " let g:airline_symbols.branch = ''
 " let g:airline_symbols.readonly = 'RO'
 " let g:airline_symbols.whitespace = ''let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 " let g:airline_symbols.whitespace = ''
 let g:airline_symbols.linenr = ''
-let g:airline_symbols.maxlinenr = ''
+" let g:airline_symbols.maxlinenr = ''
 
+let loaded_netrwPlugin = 1
 let mapleader = ","
 let maplocalleader = ","
 
@@ -33,9 +38,9 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'lervag/vimtex'
 Plug 'mtth/scratch.vim'
 Plug 'pangloss/vim-javascript'
@@ -45,23 +50,26 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-bbye'
 Plug 'nelsyeung/twig.vim'
 Plug 'fsharp/vim-fsharp'
+Plug 'rust-lang/rust.vim'
 Plug 'syngan/vim-vimlint'
 Plug 'ynkdir/vim-vimlparser'
 Plug 'cespare/vim-toml'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'posva/vim-vue'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
+let g:wordmotion_prefix = '<leader>'
 Plug 'chaoren/vim-wordmotion'
+Plug 'vim-scripts/loremipsum'
 
 Plug 'Chiel92/vim-autoformat'
 
 Plug 'Shougo/denite.nvim'
 
 Plug 'padawan-php/deoplete-padawan'
-Plug 'zchee/deoplete-clang'
+" Plug 'tweekmonster/deoplete-clang2'
 Plug 'carlitux/deoplete-ternjs'
-Plug 'https://github.com/Shougo/neco-vim'
+Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 
 let g:deoplete#enable_at_startup = 1
@@ -98,7 +106,7 @@ Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 
 let g:clang_library_path = "/run/current-system/sw/lib"
-Plug 'Rip-Rip/clang_complete'
+" Plug 'Rip-Rip/clang_complete'
 
 " let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 " let g:deoplete#ignore_sources.php = ['omni']
@@ -180,17 +188,20 @@ highlight IncSearch ctermbg=none ctermfg=none cterm=underline
 highlight StatusLine ctermbg=none ctermfg=7
 highlight clear WildMenu
 highlight WildMenu cterm=reverse
-highlight ExtraWhitespace ctermbg=19
+highlight ExtraWhitespace ctermbg=19 ctermfg=2
+
+" {{{
 
 nnoremap <silent> <c-b> :Buffers<cr>
 noremap  <silent> <C-q> :Commands<cr>
 nnoremap <silent> <c-p> :Files<cr>
 nnoremap <silent> <a-d> :Bdelete<cr>
-nnoremap <silent> <a-q> :wqa<cr>
-nnoremap <silent> <a-w> :update<cr>
-
 nnoremap <silent> <leader>z :Goyo<cr>
 nnoremap <silent> <leader>t :terminal<cr>
+
+nnoremap <silent> <a-q> :wqa<cr>
+nnoremap <silent> <a-w> :update<cr>
+nnoremap <silent> <a-e> <c-w><c-w>
 
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
@@ -208,17 +219,17 @@ noremap l gk
 noremap k gj
 noremap j h
 noremap h <nop>
+nnoremap Q gqq
 nnoremap QQ gqip
-nnoremap Qq gqq
 nnoremap K <nop>
 noremap $ g$
 noremap 0 g^
 noremap ^ g^
 
-noremap <up> <nop>
-noremap <right> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
+" noremap <up> <nop>
+" noremap <right> <nop>
+" noremap <down> <nop>
+" noremap <left> <nop>
 
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
@@ -232,49 +243,12 @@ nnoremap - <c-x>
 
 nnoremap S i<cr><esc>
 
-function! Tab_Or_Complete()
-  if col('.') > 1 && strpart(getline('.'), col('.') - 2, 3) =~ '^\w'
-    return "\<C-N>"
-  else
-    return "\<Tab>"
-  endif
-endfunction
-inoremap <silent> <tab> <c-r>=Tab_Or_Complete()<cr>
+inoremap <c-u> <esc>mmgUiw`ma
 
-command! -nargs=1 Tabs set ts=<args> sts=<args> sw=<args> noet
-command! -nargs=1 Spaces set ts=10 sts=10 sw=<args> et
+inoremap <leader>; <C-o>A;
+noremap <leader>; A;<esc>
 
-augroup FileTypes
-  autocmd BufNewFile,BufEnter *.tex,*.cls,*.clo set filetype=tex
-  autocmd BufNewFile,BufEnter *.scm,*.lisp RainbowToggleOn
-augroup end
-
-augroup Indentation
-  autocmd BufNewFile,BufEnter *.tex,*.cls,*.clo Spaces 2
-  autocmd BufNewFile,BufEnter *.zsh,*.sh,*.bash Spaces 2
-  autocmd BufNewFile,BufEnter *.scm,*.lisp      Spaces 2
-augroup end
-
-augroup WriteOnFocusLost
-  autocmd BufLeave,FocusLost * silent! wall
-augroup end
-
-augroup StripWhitespace
-  autocmd BufEnter * EnableStripWhitespaceOnSave
-augroup end
-
-let g:last_bufnr = 1
-augroup AlternateBuffer
-  autocmd BufLeave * let g:last_bufnr = bufnr('%')
-augroup end
-
-augroup Xresources
-  autocmd BufWrite *.Xresources :silent !xrdb %
-augroup end
-
-nnoremap <silent> [] :execute ':b' . g:last_bufnr<cr>
-
-tnoremap <C-\> <C-\><C-n>
+imap <C-q> <C-y>,
 
 command! -bang -nargs=? -complete=file E e<bang> <args>
 command! -bang -nargs=? -complete=file W w<bang> <args>
@@ -287,14 +261,62 @@ command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
 command! ReloadFile e!
 
+" }}}
+
+function! Tab_Or_Complete()
+  if col('.') > 1 && strpart(getline('.'), col('.') - 2, 3) =~ '^\w'
+    return "\<C-N>"
+  else
+    return "\<Tab>"
+  endif
+endfunction
+inoremap <silent> <tab> <c-r>=Tab_Or_Complete()<cr>
+
+command! -nargs=1 Tabs set ts=<args> sts=<args> sw=<args> noet
+command! -nargs=1 Spaces set ts=10 sts=10 sw=<args> et
+
+augroup filetypes
+  autocmd BufNewFile,BufEnter *.tex,*.cls,*.clo set filetype=tex
+  autocmd BufNewFile,BufEnter *.asm set filetype=nasm
+augroup end
+
+augroup rainbow
+  autocmd BufNewFile,BufEnter *.scm,*.lisp RainbowToggleOn
+augroup end
+
+augroup indentation
+  autocmd BufNewFile,BufEnter *.tex,*.cls,*.clo Spaces 2
+  autocmd BufNewFile,BufEnter *.zsh,*.sh,*.bash Spaces 2
+  autocmd BufNewFile,BufEnter *.scm,*.lisp      Spaces 2
+augroup end
+
+augroup write_on_focus_lost
+  autocmd BufLeave,FocusLost * silent! wall
+augroup end
+
+augroup strip_whitespace
+  autocmd BufEnter * EnableStripWhitespaceOnSave
+  autocmd BufEnter * CurrentLineWhitespaceOff soft
+augroup end
+
+let g:last_bufnr = 1
+augroup alternate
+  autocmd BufLeave * let g:last_bufnr = bufnr('%')
+augroup end
+
+augroup Xresources
+  autocmd BufWrite *.Xresources :silent !xrdb %
+augroup end
+
+nnoremap <silent> [] :execute ':b' . g:last_bufnr<cr>
+
+tnoremap <C-\> <C-\><C-n>
+
 command! -nargs=1 Sp set spelllang=<args>
 
 nnoremap <leader>f :call Format('%')<CR>
 
-imap <C-q> <C-y>,
-
 inoremap <C-j>u <C-r>=py3eval('str(__import__("uuid").uuid4())')<cr>
 inoremap <C-j>d <C-r>=py3eval('str(__import__("datetime").datetime.now().isoformat())')<cr>
-nmap sw ysiw
 
-inoremap <leader>; <C-o>A;
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'

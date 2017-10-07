@@ -1,20 +1,20 @@
 \RequirePackage{fancyvrb}
 \RequirePackage{amsbsy,amsfonts,amssymb,amsthm,mathtools}
 
-\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{%
-  fontsize=\small,
-  frame=leftline,
-  framesep=5pt,
-  numbers=left,
-  tabsize=2,
-  numbersep=5pt}
-\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{%
-  fontsize=\small,
-  frame=leftline,
-  framesep=5pt,
-  numbers=left,
-  tabsize=2,
-  numbersep=5pt}
+% \RecustomVerbatimEnvironment{Verbatim}{Verbatim}{%
+%   fontsize=\small,
+%   frame=single,
+%   framesep=5pt,
+%   tabsize=2,
+%   numbersep=5pt
+% }
+% \RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}{%
+%   fontsize=\small,
+%   frame=single,
+%   framesep=5pt,
+%   tabsize=2,
+%   numbersep=5pt
+% }
 
 \newcommand\mb[1]{\ensuremath{\mathbf{#1}}}
 \newcommand\mf[1]{\mathrm{#1}}
@@ -31,4 +31,8 @@
 \newcommand\QQ{\ensuremath{\mathbb{Q}}}
 \newcommand\RR{\ensuremath{\mathbb{R}}}
 \newcommand\CC{\ensuremath{\mathbb{C}}}
-\newcommand\var[1]{\texttt{#1}}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\renewcommand\lnot[1]{\overbar{#1}}
+
+\newcommand\variable[1]{{\ttfamily#1}}
+\newcommand\register[1]{{\ttfamily#1}}

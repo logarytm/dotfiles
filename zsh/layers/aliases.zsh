@@ -1,4 +1,6 @@
 # everyday aliases & defaults
+alias mv='mv -v'
+alias cp='cp -v'
 alias ncdu='ncdu -2 -x'
 alias rm='rm -v'
 alias rmdir='rmdir -v'
@@ -10,9 +12,10 @@ alias l='command ls --color=auto -Ah --group-directories-first'
 alias ll='ls -lA'
 alias lf='find . -maxdepth 1 \( -not -name .\* \) -type f -print0 | xargs -0r ls --color=auto -h'
 alias http-serve="python3 -m http.server"
+alias df='df -h'
 
 # inter-device mv(1)
-alias imv='rsync -abmv --remove-source-files'
+alias imv='rsync -abmv --info=progress2 --no-i-r --remove-source-files'
 
 # avoid interpolation of special characters
 alias curl='noglob curl'

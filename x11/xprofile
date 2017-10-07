@@ -1,7 +1,7 @@
 export QT_QPA_PLATFORMTHEME=qt5ct
 eval `gnome-keyring-daemon`
 
-export INFINALITY_FT_BRIGHTNESS="-30"
+export INFINALITY_FT_BRIGHTNESS="-40"
 
 setxkbmap -option ctrl:nocaps
 setxkbmap -option compose:menu

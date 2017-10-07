@@ -7,7 +7,6 @@
 \RequirePackage{mathtools,amsthm,amsbsy,amssymb,amsfonts}
 \RequirePackage{polski}
 \RequirePackage[polish]{babel}
-\RequirePackage{fancyhdr}
 \RequirePackage{float}
 \RequirePackage{xcolor}
 \RequirePackage{upquote}
@@ -16,9 +15,15 @@
 \RequirePackage{pbox}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{fancyvrb}
-\RequirePackage[lighttt]{lmodern}
 \RequirePackage{parskip}
-\usepackage[l2tabu]{nag}
+\RequirePackage{booktabs}
+\RequirePackage{charter}
+\RequirePackage[charter]{mathdesign}
+\RequirePackage[scaled]{nimbusmononarrow}
+\RequirePackage{etoolbox}
+\RequirePackage[l2tabu]{nag}
+
+\gappto\@floatboxreset{\centering\appto\@minipagerestore{\centering}}
 
 \newif\if@toc\@tocfalse
 \newif\if@blank\@blankfalse
@@ -48,6 +53,7 @@
 \newcommand\kmisd{Katedra Metrologii i~Systemów Diagnostycznych}
 \newcommand\kpe{Katedra Podstaw Elektroniki}
 \newcommand\zsz{Zakład Systemów Złożonych}
+\newcommand\zese{Zakład Elektrodynamiki i Systemów Elektromaszynowych}
 
 \newcommand\class[1]{\renewcommand\@class{#1}}
 \newcommand\faculty[1]{\renewcommand\@faculty{#1}}
@@ -67,8 +73,10 @@
   \begin{center}
     {\LARGE\bfseries \@subject}
     \\[1em]
+    \if\relax\@type\relax\else
     {\Large \@type}
     \\[1em]
+    \fi
     \begin{minipage}{.75\textwidth}
       \centering
       {\large \@title}

@@ -7,7 +7,7 @@ floating_modifier $mod
 
 bindsym $mod+Return exec «paths.commands»/new-terminal
 bindsym $mod+w exec google-chrome-stable
-bindsym $mod+s exec xdg-open $home/Stos
+bindsym $mod+s exec xdg-open $home/stos
 
 bindsym $mod+q kill
 
@@ -46,6 +46,8 @@ bindsym $mod+Shift+space focus mode_toggle
 bindsym $mod+p focus parent
 bindsym $mod+c focus child
 
+workspace_layout tabbed
+
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -56,6 +58,10 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+for_window [workspace="8"] floating enable
+for_window [workspace="9"] floating enable
+for_window [workspace="10"] floating enable
 
 bindsym $mod+F1 move container to workspace 1
 bindsym $mod+F2 move container to workspace 2
@@ -69,7 +75,7 @@ bindsym $mod+F9 move container to workspace 9
 bindsym $mod+F10 move container to workspace 10
 
 new_window  normal
-new_float   pixel 2
+new_float   pixel 1
 
 focus_follows_mouse no
 
@@ -117,9 +123,11 @@ exec_always $home/.fehbg
 exec xrandr --output eDP-1 --off
 
 client.focused «colors.black» «colors.black» «colors.brightgray» «colors.gray» «colors.black»
-client.focused_inactive «colors.black» «colors.black» «colors.brightgray» «colors.black» «colors.black»
-client.unfocused «colors.darkblack» «colors.darkblack» «colors.gray» «colors.black» «colors.black»
-client.urgent «colors.yellow» «colors.yellow» «colors.yellow» «colors.black» «colors.darkgray» «colors.black»
+client.focused_inactive «colors.black» «colors.black» «colors.gray» «colors.gray» «colors.black»
+client.unfocused «colors.darkblack» «colors.darkblack» «colors.gray» «colors.gray» «colors.black»
+# client.focused_inactive «colors.black» «colors.black» «colors.brightgray» «colors.black» «colors.black»
+# client.unfocused «colors.darkblack» «colors.darkblack» «colors.gray» «colors.black» «colors.black»
+client.urgent «colors.yellow» «colors.yellow» «colors.yellow» «colors.black» «colors.darkgray» «colors.black»
 
 bindsym --release Print        exec «paths.commands»/take-screenshot full
 bindsym --release Shift+Print  exec «paths.commands»/take-screenshot region
@@ -140,19 +148,21 @@ for_window [class="qemu-system-.*"] floating enable
 for_window [class="qemu-system-.*"] border pixel 2
 for_window [class=".*VirtualBox.*"] floating enable
 for_window [class=".*VirtualBox.*"] border pixel 2
+for_window [class=".*rxvt.*"] border normal
 
 bar {
-  height 24
+  height 26
   status_command i3blocks -c $home/.config/i3blocks.conf
-  tray_output none
+  # tray_output none
+  position bottom
 
   colors {
     background «colors.black»
     separator «colors.black»
     # border background text
-    focused_workspace «colors.brightgray» «colors.brightgray» «colors.black»
-    active_workspace «colors.black» «colors.black» «colors.brightgray»
-    inactive_workspace «colors.black» «colors.black» «colors.brightgray»
+    focused_workspace «colors.black» «colors.black» «colors.yellow»
+    active_workspace «colors.black» «colors.black» «colors.gray»
+    inactive_workspace «colors.black» «colors.black» «colors.gray»
     urgent_workspace «colors.gray» «colors.gray» «colors.brightgray»
   }
 }

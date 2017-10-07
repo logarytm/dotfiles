@@ -27,7 +27,7 @@ URxvt.keysym.Control-Right: \033[1;5C
 
 URxvt.buffered: true
 
-URxvt.fading: 20
+URxvt.fading: 0
 URxvt.fadeColor: «colors.black»
 
 URxvt.perl-ext-common: default,selection-to-clipboard,pasta,matcher,keyboard-select,bell-command
